@@ -30,14 +30,15 @@
         "hyperf/rpc": "~2.0.0",
         "hyperf/rpc-client": "~2.0.0",
         "hyperf/rpc-server": "~2.0.0",
-        "hyperf/service-governance": "~2.0.0",
+        "hyperf/service-governance": "^2.0",
         "hyperf/config-apollo": "~2.0.0",
         "hyperf/constants": "~2.0.0",
         "hyperf/async-queue": "~2.0.0",
         "hyperf/amqp": "~2.0.0",
         "hyperf/model-cache": "~2.0.0",
         "hyperf/elasticsearch": "~2.0.0",
-        "hyperf/tracer": "~2.0.0"
+        "hyperf/tracer": "~2.0.0",
+        "hyperf/consul": "^2.0"
     },
     "require-dev": {
         "swoole/ide-helper": "^4.5",

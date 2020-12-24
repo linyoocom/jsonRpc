@@ -11,8 +11,8 @@ use Hyperf\RpcServer\Annotation\RpcService;
 
 /**
  * 目前仅支持通过注解的形式来定义 服务提供者(ServiceProvider)
- * 注意，如希望通过服务中心来管理服务，需在注解内增加 publishTo 属性
- * @RpcService(name="CalculatorService", protocol="jsonrpc-http", server="jsonrpc-http")
+ * 注意，如希望通过服务中心来管理服务，需在注解内增加 publishTo 属性 :publishTo="consul"
+ * @RpcService(name="CalculatorService", protocol="jsonrpc-http", server="jsonrpc-http", publishTo="consul")
  */
 class CalculatorService implements CalculatorServiceInterface
 {

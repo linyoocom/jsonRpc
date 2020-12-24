@@ -15,23 +15,40 @@ use Hyperf\Server\SwooleEvent;
 return [
     'mode' => SWOOLE_PROCESS,
     'servers' => [
-        [
-            'name' => 'jsonrpc',  //把 http 改成 jsonrpc
+        /*[
+            'name' => 'http',
             'type' => Server::SERVER_HTTP,
             'host' => '0.0.0.0',
             'port' => 9501,
             'sock_type' => SWOOLE_SOCK_TCP,
-            /*'callbacks' => [
-                SwooleEvent::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
-            ],*/
             'callbacks' => [
-                SwooleEvent::ON_REQUEST => [Hyperf\JsonRpc\TcpServer::class, 'onRequest'],
+                SwooleEvent::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
+            ],
+        ],*/
+        [
+            'name' => 'jsonrpc-http',   //这里选择jsonrpc-http协议
+            'type' => Server::SERVER_HTTP,
+            'host' => '0.0.0.0',
+            'port' => 9502,
+            'sock_type' => SWOOLE_SOCK_TCP,
+            'callbacks' => [
+                SwooleEvent::ON_REQUEST => [\Hyperf\JsonRpc\HttpServer::class, 'onRequest'],  //HTTP Server(适配 jsonrpc-http 协议)
+            ],
+        ],
+        /*[
+            'name' => 'jsonrpc',  // 或者选择jsonrpc
+            'type' => Server::SERVER_HTTP,
+            'host' => '0.0.0.0',
+            'port' => 9503,
+            'sock_type' => SWOOLE_SOCK_TCP,
+            'callbacks' => [
+                SwooleEvent::ON_RECEIVE => [Hyperf\JsonRpc\TcpServer::class, 'onReceive'],  //TCP Server (适配 jsonrpc 协议) onReceive
             ],
             'settings' => [
                 'open_eof_split' => true,
                 'package_eof' => "\r\n",
             ]
-        ],
+        ],*/
     ],
     'settings' => [
         'enable_coroutine' => true,

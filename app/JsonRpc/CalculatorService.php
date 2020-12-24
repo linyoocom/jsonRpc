@@ -10,13 +10,16 @@ namespace App\JsonRpc;
 use Hyperf\RpcServer\Annotation\RpcService;
 
 /**
- * Class CalculatorService
- * @RpcService(name="CalculatorService", protocol="jsonrpc", server="jsonrpc")
+ * 目前仅支持通过注解的形式来定义 服务提供者(ServiceProvider)
+ * 注意，如希望通过服务中心来管理服务，需在注解内增加 publishTo 属性
+ * @RpcService(name="CalculatorService", protocol="jsonrpc-http", server="jsonrpc-http")
  */
 class CalculatorService implements CalculatorServiceInterface
 {
-    public function add(int $v1, int $v2): int
+    // 实现一个加法方法，这里简单的认为参数都是 int 类型
+    public function add(int $a, int $b): int
     {
-        return $v1 + $v2;
+        // 这里是服务方法的具体实现
+        return $a + $b;
     }
 }
